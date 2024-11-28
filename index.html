@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasi's Big25</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('photo1') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      text-shadow: 1px 1px 5px rgba(238, 14, 137, 0.8);
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(196, 97, 171, 0.7);
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    section {
+      margin: 20px;
+      padding: 20px;
+      background-color: rgba(178, 24, 88, 0.6);
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 15px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(233, 10, 144, 0.8);
+    }
+
+    .photo-message {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .photo-message img {
+      width: 40%;
+    }
+
+    .game-container {
+      text-align: center;
+    }
+
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .answer {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Nasi's Big25
+  </header>
+  
+  <section>
+    <h2>Sawubona Mntomuhle</h2>
+    <p>Of all the days I’ve had to express myself, today feels like the hardest...</p>
+    <!-- (Full text from your requirements goes here) -->
+  </section>
+
+  <section>
+    <div class="photo-message">
+      <img src="photo2" alt="Photo">
+      <p>You know, I’ll never forget the day I saw you in that outfit...</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Reasons I Adore You</h2>
+    <p>There’s so much I appreciate about you, it’s overwhelming...</p>
+    <!-- (Full text from your requirements goes here) -->
+  </section>
+
+  <section>
+    <h2>Snapshots of My Heart</h2>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <img src="photo3" alt="Photo">
+      <img src="photo4" alt="Photo">
+    </div>
+  </section>
+
+  <section>
+    <h2>A Little Game</h2>
+    <div class="game-container">
+      <div id="game">
+        <p class="question">What day did I send you that first DM?</p>
+        <button class="answer" onclick="checkAnswer(this, true)">Sunday</button>
+        <button class="answer" onclick="checkAnswer(this, false)">Saturday</button>
+      </div>
+      <p id="result"></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    This website was made with love and (anxiety) by ikhekhe lakho la-shizi, Lungile.
+  </footer>
+
+  <script>
+    let currentQuestion = 0;
+    const questions = [
+      {
+        question: "What day did I send you that first DM?",
+        answers: ["Sunday", "Saturday"],
+        correct: 0,
+      },
+      {
+        question: "What was our very first inside joke?",
+        answers: ["uFABULOUS", "Double Identities - uNasiphi noAlizwa"],
+        correct: 1,
+      },
+      {
+        question: "What do I absolutely adore the most about you?",
+        answers: ["Your elbow", "Your voice and laughter"],
+        correct: 1,
+      },
+      {
+        question: "Which identity did I like first?",
+        answers: ["uAlizwa", "uNasiphi"],
+        correct: 0,
+      },
+      {
+        question:
+          "Do you think uLungile loves you? ... Spoiler alert: YES to all.",
+        answers: ["Of course, what is there not to love?", "Not quite"],
+        correct: 0,
+      },
+    ];
+
+    function checkAnswer(button, isCorrect) {
+      const result = document.getElementById("result");
+      if (isCorrect) {
+        result.textContent = "Correct!";
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          loadQuestion();
+        } else {
+          result.textContent = "Game over! You aced it!";
+        }
+      } else {
+        result.textContent = "Not quite, try again!";
+      }
+    }
+
+    function loadQuestion() {
+      const game = document.getElementById("game");
+      const questionObj = questions[currentQuestion];
+      game.innerHTML = `<p class="question">${questionObj.question}</p>`;
+      questionObj.answers.forEach((answer, index) => {
+        const isCorrect = index === questionObj.correct;
+        game.innerHTML += `<button class="answer" onclick="checkAnswer(this, ${isCorrect})">${answer}</button>`;
+      });
+    }
+  </script>
+</body>
+</html>
+
